@@ -20,6 +20,17 @@ server.on('request',(request,response)=>{
     case 'multi-part/form-data':
       response.end('you send form-data');
       break;
+    case 'application/x-www-form-urlencoded':
+      let resp = '';
+      request.on('data',(data)=>{
+        console.log(data);
+        resp += data.toString('utf-8');
+        console.log(resp);
+      });
+      request.on('end',()=>{
+        response.end(`request data is ${resp}`)
+      });
+      break;
     default:
       response.end('not supported content-type');
       break;
