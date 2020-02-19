@@ -4,7 +4,8 @@ const server = http.createServer();
 let users = [];
 server.on('request',(request,response)=>{
   const contentType = request.headers['content-type'];
-  const pathName = url.parse(request.url).pathname;
+  const urlParse = url.parse(request.url,true);
+  const pathName = urlParse.pathname;
   console.log(url.parse(request.url));
   switch (pathName) {
     case '/user':
@@ -30,7 +31,18 @@ server.on('request',(request,response)=>{
           });
           break;
         case 'GET':
-          break
+          const userName = urlParse.query.name;
+          console.log(users);
+          const user = users.find((u)=>{
+            console.log(u);
+            console.log(u.name);
+            console.log(userName);
+            return u.name === userName;
+          });
+          console.log(user);
+          response.setHeader('Content-Type','application/json');
+          response.end(JSON.stringify(user));
+          break;
       }
       break;
     case 'list':
