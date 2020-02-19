@@ -16,8 +16,9 @@ server.on('request',(request,response)=>{
           let str = '';
           request.on('data',(data)=>{
             str += data.toString('utf-8');
+            console.log(1);
           });
-          console.log(str);
+          console.log(2);
           request.on('end',()=>{
             let user;
             try {
