@@ -1,0 +1,13 @@
+const { EventEmitter }  = require('events');
+
+class MyEmitter extends EventEmitter{}
+
+const emitter = new MyEmitter();
+
+function login() {
+  console.log('login');
+}
+
+emitter.on('login',login);
+emitter.emit('login');
+// emitter.off();
