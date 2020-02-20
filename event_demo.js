@@ -9,5 +9,8 @@ function login() {
 }
 
 emitter.on('login',login);
+emitter.on('login',()=>{
+  console.log('something else to do');
+});
 emitter.emit('login');
-// emitter.off();
+emitter.off('login',login);
