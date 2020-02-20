@@ -1,4 +1,8 @@
 const fs = require('fs');
+const fstestobj = {
+  name: 'suyuan',
+  age: 18
+};
 
 function fileExists(path,callback){
   fs.access(path,(error)=>{
@@ -9,6 +13,10 @@ function fileExists(path,callback){
     }
   })
 }
-fileExists('./fs.demo.js',(error,fileexists)=>{
-  console.log(fileexists);
+fileExists('./fs.test.js',(error,fileexists)=>{
+  if(!fileexists) {
+    fs.appendFile('./fs.test.js',fstestobj,(err)=>{
+      if (err) console.log(err);
+    })
+  }
 });
