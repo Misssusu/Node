@@ -13,9 +13,9 @@ function fileExists(path,callback){
     }
   })
 }
-fileExists('./fs.test.js',(error,fileexists)=>{
+fileExists('./fs.test.json',(error,fileexists)=>{
   if(!fileexists) {
-    fs.appendFile('./fs.test.js',fstestobj,(err)=>{
+    fs.appendFile('./fs.test.json',JSON.stringify(fstestobj),(err)=>{
       if (err) console.log(err);
     })
   }
