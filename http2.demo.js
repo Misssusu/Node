@@ -1,4 +1,5 @@
 const http = require('http');
+const fs = require('fs');
 
 const request = http.request({
   host: 'cn.bing.com',
@@ -11,7 +12,7 @@ const request = http.request({
     str += data.toString('utf-8');
   });
   res.on('end',(data)=>{
-    console.log(str);
+    fs.appendFile('test.html',str,()=>{})
   })
 });
 request.end();
