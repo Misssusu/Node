@@ -1,7 +1,7 @@
 const fs = require('fs');
-const fstestobj = {
+let fstestobj = {
   name: 'suyuan',
-  age: 18
+  age: 28
 };
 let filePath = './fs.test.json';
 
@@ -20,8 +20,15 @@ fileExists(filePath,(error,fileexists)=>{
       if (err) console.log(err);
     });
   }else {
-    fs.readFile(filePath,(error,data)=>{
-      console.log(data.toString('utf-8'));
+    fs.readFile(filePath,[null,'r+'],(error,data)=>{
+      if(error){
+        console.log(error);
+      }else {
+        console.log('write');
+        fs.writeFile(filePath,JSON.stringify(fstestobj),(error)=>{
+          console.log(data);
+        });
+      }
     })
   }
 });
