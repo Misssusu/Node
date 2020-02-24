@@ -1,11 +1,13 @@
 const koa = require('koa');
+const bodyParse = require('koa-body');
 const app = new koa();
-function middleWare(options){
-  if(options.user){
-    return async (ctx,next)=>{ ctx.body='success' }
-  }else {
-    next();
-  }
-}
-app.use(middleWare({user: true}));
+
+
+app.use(bodyParse({
+  json: false
+}));
+app.use(async (ctx,next)=>{
+  console.log(ctx.request.body);
+  ctx.body = 'got it';
+});
 app.listen(8989);
