@@ -7,7 +7,7 @@ app.use(bodyParse());
 const router = new Router();
 let users = [];
 router
-  .get('/user',async (ctx,next)=>{
+  .get('router name','/user',async (ctx,next)=>{
     ctx.body = { data: { users } };
   })
   .post('/user',async (ctx,next)=>{
@@ -16,6 +16,7 @@ router
     users.push(user);
     ctx.body = { data: { users } };
   });
+console.log(router.route('router name'));
 app.use(router.routes());
 
 
